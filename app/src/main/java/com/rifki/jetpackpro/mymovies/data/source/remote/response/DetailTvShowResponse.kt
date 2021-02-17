@@ -29,7 +29,7 @@ data class DetailTvShowResponse(
 	val name: String,
 
 	@field:SerializedName("tagline")
-	val tagline: String? = "",
+	val tagline: String? = ""
 )
 
 data class GenresItem(

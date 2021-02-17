@@ -32,7 +32,7 @@ class TvShowAdapter: RecyclerView.Adapter<TvShowAdapter.TvShowViewHolder>() {
     inner class TvShowViewHolder(private val binding: ItemMovieTvShowBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(tvShow: TvShowEntity) {
             with(binding) {
-                tvTitle.text = tvShow.title
+                tvTitle.text = tvShow.name
                 tvRating.text = tvShow.voteAverage.toString()
 
                 Picasso.get()

@@ -7,6 +7,6 @@ import kotlinx.parcelize.Parcelize
 data class TvShowEntity (
         var id: Int,
         var posterPath: String,
-        var title: String,
+        var name: String,
         var voteAverage: Double
 ): Parcelable
