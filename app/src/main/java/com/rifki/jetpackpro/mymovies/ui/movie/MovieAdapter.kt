@@ -33,10 +33,12 @@ class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
         fun bind(movie: MovieEntity) {
             with(binding) {
                 tvTitle.text = movie.title
+                tvTitle.isSelected = true
+                tvTitle.isSingleLine = true
                 tvRating.text = movie.voteAverage.toString()
 
                 Picasso.get()
-                        .load(movie.posterPath)
+                        .load("https://image.tmdb.org/t/p/w185${movie.posterPath}")
                         .placeholder(R.drawable.ic_loading)
                         .error(R.drawable.ic_error)
                         .into(imgPoster)

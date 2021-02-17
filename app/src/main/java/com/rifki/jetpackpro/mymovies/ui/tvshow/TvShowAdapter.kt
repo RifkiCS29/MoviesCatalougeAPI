@@ -36,7 +36,7 @@ class TvShowAdapter: RecyclerView.Adapter<TvShowAdapter.TvShowViewHolder>() {
                 tvRating.text = tvShow.voteAverage.toString()
 
                 Picasso.get()
-                        .load(tvShow.posterPath)
+                        .load("https://image.tmdb.org/t/p/w185${tvShow.posterPath}")
                         .placeholder(R.drawable.ic_loading)
                         .error(R.drawable.ic_error)
                         .into(imgPoster)
