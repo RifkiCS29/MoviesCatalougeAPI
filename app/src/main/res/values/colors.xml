@@ -6,5 +6,7 @@
     <color name="colorImage">#13C5C6</color>
     <color name="black_60">#99000000</color>
     <color name="yellow_star">#fbc02d</color>
-    <color name="colorTextTertiary">#EFEFEF</color>
+    <color name="colorText">#EFEFEF</color>
+    <color name="White_80">#CCFFFFFF</color>
+    <color name="White_70">#b3ffffff</color>
 </resources>
