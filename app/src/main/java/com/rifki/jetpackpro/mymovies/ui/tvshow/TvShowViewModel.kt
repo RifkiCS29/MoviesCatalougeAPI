@@ -7,5 +7,5 @@ import com.rifki.jetpackpro.mymovies.data.source.local.entity.TvShowEntity
 
 class TvShowViewModel(private val movieAppRepository: MovieAppRepository): ViewModel() {
 
-    fun getMTvShows(): LiveData<List<TvShowEntity>> = movieAppRepository.getTvShows()
+    fun getTvShows(): LiveData<List<TvShowEntity>> = movieAppRepository.getTvShows()
 }
