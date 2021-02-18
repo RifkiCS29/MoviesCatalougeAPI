@@ -1,16 +1,17 @@
 package com.rifki.jetpackpro.mymovies.ui.tvshow
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.rifki.jetpackpro.mymovies.R
 import com.rifki.jetpackpro.mymovies.data.source.local.entity.TvShowEntity
 import com.rifki.jetpackpro.mymovies.databinding.ItemMovieTvShowBinding
+import com.rifki.jetpackpro.mymovies.ui.detail.tvshow.DetailTvShowActivity
 import com.squareup.picasso.Picasso
 
 class TvShowAdapter: RecyclerView.Adapter<TvShowAdapter.TvShowViewHolder>() {
     private val listTvShows = ArrayList<TvShowEntity>()
-    private lateinit var onItemClickCallback: OnItemClickCallback
 
     fun setTvShows(tvShows: List<TvShowEntity>){
         if (tvShows.isNullOrEmpty()) return
@@ -41,19 +42,13 @@ class TvShowAdapter: RecyclerView.Adapter<TvShowAdapter.TvShowViewHolder>() {
                         .error(R.drawable.ic_error)
                         .into(imgPoster)
 
-
                 itemView.setOnClickListener {
-                    onItemClickCallback.onItemClicked(tvShow)
+                    val intent = Intent(itemView.context, DetailTvShowActivity::class.java).apply {
+                        putExtra(DetailTvShowActivity.EXTRA_TV_SHOW, tvShow.id)
+                    }
+                    itemContainer.context.startActivity(intent)
                 }
             }
         }
-    }
-
-    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
-        this.onItemClickCallback = onItemClickCallback
-    }
-
-    interface OnItemClickCallback {
-        fun onItemClicked(data: TvShowEntity)
     }
 }

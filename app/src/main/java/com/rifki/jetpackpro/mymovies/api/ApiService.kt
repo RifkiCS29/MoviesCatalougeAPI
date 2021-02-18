@@ -29,7 +29,7 @@ interface ApiService {
 
     @GET("tv/{tvShow_id}")
     fun getDetailTvShow(
-        @Path("movie_id") tvShowId: String,
+        @Path("tvShow_id") tvShowId: String,
         @Query("api_key") apiKey: String
     ): Call<DetailTvShowResponse>
 }
