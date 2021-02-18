@@ -12,8 +12,8 @@ interface MovieAppDataSource {
 
     fun getTvShows(): LiveData<List<TvShowEntity>>
 
-    fun getDetailMovie(movieId: Int): LiveData<DetailMovieEntity>
+    fun getDetailMovie(movieId: String): LiveData<DetailMovieEntity>
 
-    fun getDetailTvShow(tvShowId: Int): LiveData<DetailTvShowEntity>
+    fun getDetailTvShow(tvShowId: String): LiveData<DetailTvShowEntity>
 
 }

@@ -68,7 +68,7 @@ class MovieAppRepository private constructor(private val remoteDataSource: Remot
         return resultsTvShowItem
     }
 
-    override fun getDetailMovie(movieId: Int): LiveData<DetailMovieEntity> {
+    override fun getDetailMovie(movieId: String): LiveData<DetailMovieEntity> {
         val detailMovieItemResult = MutableLiveData<DetailMovieEntity>()
 
         remoteDataSource.getDetailMovie(movieId, object : RemoteDataSource.LoadDetailMovieCallback {
@@ -81,15 +81,16 @@ class MovieAppRepository private constructor(private val remoteDataSource: Remot
                     }
 
                     val detailMovieResult = DetailMovieEntity(
-                            title,
-                            backdropPath,
+                            title = title,
+                            backdropPath = backdropPath,
                             genres = listGenres,
-                            id,
-                            overview,
-                            runtime,
-                            posterPath,
-                            releaseDate,
-                            voteAverage
+                            id = id,
+                            overview = overview,
+                            runtime = runtime,
+                            posterPath = posterPath,
+                            releaseDate = releaseDate,
+                            voteAverage = voteAverage,
+                            tagline = tagline
                     )
                     detailMovieItemResult.postValue(detailMovieResult)
                 }
@@ -98,7 +99,7 @@ class MovieAppRepository private constructor(private val remoteDataSource: Remot
         return detailMovieItemResult
     }
 
-    override fun getDetailTvShow(tvShowId: Int): LiveData<DetailTvShowEntity> {
+    override fun getDetailTvShow(tvShowId: String): LiveData<DetailTvShowEntity> {
         val detailTvShowItemResult = MutableLiveData<DetailTvShowEntity>()
 
         remoteDataSource.getDetailTvShow(tvShowId, object : RemoteDataSource.LoadDetailTvShowCallback {
@@ -111,15 +112,15 @@ class MovieAppRepository private constructor(private val remoteDataSource: Remot
                     }
 
                     val detailTvShowResult = DetailTvShowEntity(
-                            backdropPath,
+                            backdropPath = backdropPath,
                             genres = listGenres,
-                            id,
-                            firstAirDate,
-                            overview,
-                            posterPath,
-                            voteAverage,
-                            name,
-                            tagline
+                            id = id,
+                            firstAirDate = firstAirDate,
+                            overview = overview,
+                            posterPath = posterPath,
+                            voteAverage = voteAverage,
+                            name = name,
+                            tagline = tagline
                     )
                     detailTvShowItemResult.postValue(detailTvShowResult)
                 }

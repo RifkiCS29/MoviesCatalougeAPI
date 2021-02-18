@@ -5,7 +5,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class MovieEntity (
-        var id: Int,
+        var id: String,
         var posterPath: String,
         var title: String,
         var voteAverage: Double

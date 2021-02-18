@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.rifki.jetpackpro.mymovies.R
 import com.rifki.jetpackpro.mymovies.data.source.local.entity.MovieEntity
 import com.rifki.jetpackpro.mymovies.databinding.ItemMovieTvShowBinding
-import com.rifki.jetpackpro.mymovies.ui.detail.DetailMovieActivity
+import com.rifki.jetpackpro.mymovies.ui.detail.movie.DetailMovieActivity
 import com.squareup.picasso.Picasso
 
 class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {

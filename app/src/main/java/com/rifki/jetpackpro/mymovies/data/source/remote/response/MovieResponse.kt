@@ -20,5 +20,5 @@ data class ResultsMovieItem(
 	val voteAverage: Double,
 
 	@field:SerializedName("id")
-	val id: Int
+	val id: String
 )

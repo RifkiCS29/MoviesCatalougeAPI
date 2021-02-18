@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.rifki.jetpackpro.mymovies.data.source.MovieAppRepository
 import com.rifki.jetpackpro.mymovies.di.Injection
+import com.rifki.jetpackpro.mymovies.ui.detail.movie.DetailMovieViewModel
 import com.rifki.jetpackpro.mymovies.ui.movie.MovieViewModel
 import com.rifki.jetpackpro.mymovies.ui.tvshow.TvShowViewModel
 
@@ -28,6 +29,9 @@ class ViewModelFactory private constructor(private val movieAppRepository: Movie
             }
             modelClass.isAssignableFrom(TvShowViewModel::class.java) -> {
                 return TvShowViewModel(movieAppRepository) as T
+            }
+            modelClass.isAssignableFrom(DetailMovieViewModel::class.java) -> {
+                return DetailMovieViewModel(movieAppRepository) as T
             }
             else -> throw Throwable("Unknown ViewModel class: " + modelClass.name)
         }
