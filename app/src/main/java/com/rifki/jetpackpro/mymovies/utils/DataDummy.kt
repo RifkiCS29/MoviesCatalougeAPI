@@ -88,7 +88,7 @@ object DataDummy {
                 listOf("Sci-Fi & Fantasy", "Mystery", "Drama"),
                 85271,
                 "2021-01-15",
-                "Disturbances on Halloween separate Wanda from Vision, who looks into anomalous activity in Westview.",
+                "Wanda Maximoff and Vision—two super-powered beings living idealized suburban lives—begin to suspect that everything is not as it seems.",
                 "/glKDfE6btIRcVB5zrjspRIs4r52.jpg",
                 8.4,
                 "WandaVision",

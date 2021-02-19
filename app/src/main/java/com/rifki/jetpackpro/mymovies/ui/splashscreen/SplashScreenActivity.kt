@@ -9,6 +9,7 @@ import android.view.animation.AnimationUtils
 import com.rifki.jetpackpro.mymovies.R
 import com.rifki.jetpackpro.mymovies.databinding.ActivitySplashScreenBinding
 import com.rifki.jetpackpro.mymovies.ui.home.HomeActivity
+import com.rifki.jetpackpro.mymovies.utils.EspressoIdlingResource
 
 class SplashScreenActivity : AppCompatActivity() {
 
@@ -26,9 +27,11 @@ class SplashScreenActivity : AppCompatActivity() {
         binding.logoMovie.animation = AnimationUtils.loadAnimation(this, R.anim.top_anim)
         binding.myMovies.animation = AnimationUtils.loadAnimation(this, R.anim.bottom_anim)
 
+        EspressoIdlingResource.increment()
         Handler(Looper.getMainLooper()).postDelayed({
             startActivity(Intent(this, HomeActivity::class.java))
             finish()
+            EspressoIdlingResource.decrement()
         }, DELAY_MILLIS)
     }
 }

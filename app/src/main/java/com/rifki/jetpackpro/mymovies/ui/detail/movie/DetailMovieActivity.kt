@@ -62,6 +62,9 @@ class DetailMovieActivity : AppCompatActivity() {
             tvRelease.text = Convert.convertStringToDate(movie.releaseDate)
             tvRating.text = movie.voteAverage.toString()
             tvDuration.text = Convert.runtimeToHours(movie.runtime)
+            if (movie.tagline.isNullOrEmpty()) {
+                tvTaglineTitle.visibility = View.GONE
+            }
             tvQuoteValue.text = movie.tagline
 
             Picasso.get()

@@ -61,6 +61,9 @@ class DetailTvShowActivity : AppCompatActivity() {
             tvGenre.isSingleLine = true
             tvRelease.text = Convert.convertStringToDate(tvShow.firstAirDate)
             tvRating.text = tvShow.voteAverage.toString()
+            if (tvShow.tagline.isNullOrEmpty()) {
+                tvTaglineTitle.visibility = View.GONE
+            }
             tvQuoteValue.text = tvShow.tagline
 
             Picasso.get()

@@ -30,11 +30,12 @@ class MovieFragment : Fragment() {
 
             val movieAdapter = MovieAdapter()
 
-            binding?.progressBar?.visibility = View.VISIBLE
+            showLoading(true)
             viewModel.getMovies().observe(viewLifecycleOwner, { movies ->
-                binding?.progressBar?.visibility = View.GONE
+                showLoading(false)
                 movieAdapter.setMovies(movies)
                 movieAdapter.notifyDataSetChanged()
+
             })
 
             binding?.let {
@@ -44,6 +45,14 @@ class MovieFragment : Fragment() {
                     adapter = movieAdapter
                 }
             }
+        }
+    }
+
+    private fun showLoading(state: Boolean) {
+        if (state) {
+            binding?.progressBar?.visibility = View.VISIBLE
+        } else {
+            binding?.progressBar?.visibility = View.GONE
         }
     }
 
