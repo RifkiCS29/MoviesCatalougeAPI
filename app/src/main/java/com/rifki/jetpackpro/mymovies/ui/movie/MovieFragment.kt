@@ -1,5 +1,6 @@
 package com.rifki.jetpackpro.mymovies.ui.movie
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,12 +9,14 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.rifki.jetpackpro.mymovies.databinding.FragmentMovieBinding
+import com.rifki.jetpackpro.mymovies.ui.detail.movie.DetailMovieActivity
 import com.rifki.jetpackpro.mymovies.viewmodel.ViewModelFactory
 
 class MovieFragment : Fragment() {
 
     private var _fragmentMovieBinding: FragmentMovieBinding? = null
     private val binding get() = _fragmentMovieBinding
+    private lateinit var movieAdapter: MovieAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _fragmentMovieBinding = FragmentMovieBinding.inflate(inflater, container, false)
@@ -28,7 +31,7 @@ class MovieFragment : Fragment() {
             val factory = ViewModelFactory.getInstance(requireActivity())
             val viewModel = ViewModelProvider(this, factory)[MovieViewModel::class.java]
 
-            val movieAdapter = MovieAdapter()
+            movieAdapter = MovieAdapter()
 
             showLoading(true)
             viewModel.getMovies().observe(viewLifecycleOwner, { movies ->
@@ -38,14 +41,27 @@ class MovieFragment : Fragment() {
 
             })
 
-            binding?.let {
-                with(it.rvMovies) {
-                    layoutManager = GridLayoutManager(context, 2)
-                    setHasFixedSize(true)
-                    adapter = movieAdapter
-                }
+            showRecyclerView()
+        }
+    }
+
+    private fun showRecyclerView() {
+        binding?.let {
+            with(it.rvMovies) {
+                layoutManager = GridLayoutManager(context, 2)
+                setHasFixedSize(true)
+                adapter = movieAdapter
             }
         }
+
+        movieAdapter.setOnItemClickCallback(object : MovieAdapter.OnItemClickCallback {
+            override fun onItemClicked(movieId: String) {
+                val intent = Intent(context, DetailMovieActivity::class.java).apply {
+                    putExtra(DetailMovieActivity.EXTRA_MOVIE, movieId)
+                }
+                startActivity(intent)
+            }
+        })
     }
 
     private fun showLoading(state: Boolean) {

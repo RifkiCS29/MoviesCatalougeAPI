@@ -37,11 +37,11 @@ class DetailMovieActivity : AppCompatActivity() {
 
         val extras = intent.extras
         if (extras != null) {
-            val id = extras.getString(EXTRA_MOVIE)
-            if (id != null) {
+            val movieId = extras.getString(EXTRA_MOVIE)
+            if (movieId != null) {
                 activityDetailMovieBinding.progressBar.visibility = View.VISIBLE
                 activityDetailMovieBinding.contentMovie.visibility = View.INVISIBLE
-                viewModel.setSelectedMovie(id)
+                viewModel.setSelectedMovie(movieId)
                 viewModel.getMovie().observe(this, { movie ->
                     activityDetailMovieBinding.progressBar.visibility = View.GONE
                     activityDetailMovieBinding.contentMovie.visibility = View.VISIBLE

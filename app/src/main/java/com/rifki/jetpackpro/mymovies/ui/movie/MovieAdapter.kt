@@ -1,6 +1,5 @@
 package com.rifki.jetpackpro.mymovies.ui.movie
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -8,11 +7,11 @@ import com.rifki.jetpackpro.mymovies.BuildConfig
 import com.rifki.jetpackpro.mymovies.R
 import com.rifki.jetpackpro.mymovies.data.source.local.entity.MovieEntity
 import com.rifki.jetpackpro.mymovies.databinding.ItemMovieTvShowBinding
-import com.rifki.jetpackpro.mymovies.ui.detail.movie.DetailMovieActivity
 import com.squareup.picasso.Picasso
 
 class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
     private val listMovies = ArrayList<MovieEntity>()
+    private lateinit var onItemClickCallback: OnItemClickCallback
 
     fun setMovies(movies: List<MovieEntity>){
         if (movies.isNullOrEmpty()) return
@@ -46,12 +45,17 @@ class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
                         .into(imgPoster)
 
                 itemView.setOnClickListener {
-                    val intent = Intent(itemView.context, DetailMovieActivity::class.java).apply {
-                        putExtra(DetailMovieActivity.EXTRA_MOVIE, movie.id)
-                    }
-                    itemContainer.context.startActivity(intent)
+                    onItemClickCallback.onItemClicked(movie.id)
                 }
             }
         }
+    }
+
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
+        this.onItemClickCallback = onItemClickCallback
+    }
+
+    interface OnItemClickCallback {
+        fun onItemClicked(movieId: String)
     }
 }

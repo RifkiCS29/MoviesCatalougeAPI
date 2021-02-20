@@ -1,5 +1,6 @@
 package com.rifki.jetpackpro.mymovies.ui.tvshow
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,12 +9,14 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.rifki.jetpackpro.mymovies.databinding.FragmentTvShowBinding
+import com.rifki.jetpackpro.mymovies.ui.detail.tvshow.DetailTvShowActivity
 import com.rifki.jetpackpro.mymovies.viewmodel.ViewModelFactory
 
 class TvShowFragment : Fragment() {
 
     private var _fragmentTvShowBinding: FragmentTvShowBinding? =  null
     private val binding get() = _fragmentTvShowBinding
+    private lateinit var tvShowAdapter : TvShowAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _fragmentTvShowBinding = FragmentTvShowBinding.inflate(inflater, container, false)
@@ -28,7 +31,7 @@ class TvShowFragment : Fragment() {
             val factory = ViewModelFactory.getInstance(requireActivity())
             val viewModel = ViewModelProvider(this, factory)[TvShowViewModel::class.java]
 
-            val tvShowAdapter = TvShowAdapter()
+            tvShowAdapter = TvShowAdapter()
 
             showLoading(true)
             viewModel.getTvShows().observe(viewLifecycleOwner, { tvShows ->
@@ -37,14 +40,27 @@ class TvShowFragment : Fragment() {
                 tvShowAdapter.notifyDataSetChanged()
             })
 
-            binding?.let {
-                with(it.rvTvShows) {
-                    layoutManager = GridLayoutManager(context, 2)
-                    setHasFixedSize(true)
-                    adapter = tvShowAdapter
-                }
+            showRecyclerView()
+        }
+    }
+
+    private fun showRecyclerView() {
+        binding?.let {
+            with(it.rvTvShows) {
+                layoutManager = GridLayoutManager(context, 2)
+                setHasFixedSize(true)
+                adapter = tvShowAdapter
             }
         }
+
+        tvShowAdapter.setOnItemClickCallback(object : TvShowAdapter.OnItemClickCallback {
+            override fun onItemClicked(tvShowId: String) {
+                val intent = Intent(context, DetailTvShowActivity::class.java).apply {
+                    putExtra(DetailTvShowActivity.EXTRA_TV_SHOW, tvShowId)
+                }
+                startActivity(intent)
+            }
+        })
     }
 
     private fun showLoading(state: Boolean) {

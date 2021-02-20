@@ -37,11 +37,11 @@ class DetailTvShowActivity : AppCompatActivity() {
 
         val extras = intent.extras
         if (extras != null) {
-            val id = extras.getString(EXTRA_TV_SHOW)
-            if (id != null) {
+            val tvShowId = extras.getString(EXTRA_TV_SHOW)
+            if (tvShowId != null) {
                 activityDetailTvShowBinding.progressBar.visibility = View.VISIBLE
                 activityDetailTvShowBinding.contentTvShow.visibility = View.INVISIBLE
-                viewModel.setSelectedTvShow(id)
+                viewModel.setSelectedTvShow(tvShowId)
                 viewModel.getTvShow().observe(this, { tvShow ->
                     activityDetailTvShowBinding.progressBar.visibility = View.GONE
                     activityDetailTvShowBinding.contentTvShow.visibility = View.VISIBLE
