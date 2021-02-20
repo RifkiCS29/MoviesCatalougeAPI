@@ -90,7 +90,7 @@ object DataDummy {
                 "2021-01-15",
                 "Wanda Maximoff and Vision—two super-powered beings living idealized suburban lives—begin to suspect that everything is not as it seems.",
                 "/glKDfE6btIRcVB5zrjspRIs4r52.jpg",
-                8.4,
+                8.5,
                 "WandaVision",
                 "Experience a new vision of reality."
         )

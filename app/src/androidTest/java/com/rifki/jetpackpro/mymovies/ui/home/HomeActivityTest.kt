@@ -13,6 +13,7 @@ import com.rifki.jetpackpro.mymovies.ui.splashscreen.SplashScreenActivity
 import com.rifki.jetpackpro.mymovies.utils.DataDummy
 import com.rifki.jetpackpro.mymovies.utils.EspressoIdlingResource
 import androidx.test.espresso.matcher.ViewMatchers.*
+import com.rifki.jetpackpro.mymovies.utils.Convert
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
@@ -45,6 +46,16 @@ class HomeActivityTest{
         onView(withId(R.id.tv_title)).check(matches(withText(dummyDetailMovie.title)))
         onView(withId(R.id.tv_description)).check(matches(isDisplayed()))
         onView(withId(R.id.tv_description)).check(matches(withText(dummyDetailMovie.overview)))
+        onView(withId(R.id.tv_rating)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_rating)).check(matches(withText(dummyDetailMovie.voteAverage.toString())))
+        onView(withId(R.id.tv_genre)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_genre)).check(matches(withText(dummyDetailMovie.genres.joinToString())))
+        onView(withId(R.id.tv_release)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_release)).check(matches(withText(Convert.convertStringToDate(dummyDetailMovie.releaseDate))))
+        onView(withId(R.id.tvQuoteValue)).check(matches(isDisplayed()))
+        onView(withId(R.id.tvQuoteValue)).check(matches(withText(dummyDetailMovie.tagline)))
+        onView(withId(R.id.tv_duration)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_duration)).check(matches(withText(Convert.runtimeToHours(dummyDetailMovie.runtime))))
     }
 
     @Test
@@ -64,6 +75,14 @@ class HomeActivityTest{
         onView(withId(R.id.tv_name)).check(matches(withText(dummyDetailTvShow.name)))
         onView(withId(R.id.tv_description)).check(matches(isDisplayed()))
         onView(withId(R.id.tv_description)).check(matches(withText(dummyDetailTvShow.overview)))
+        onView(withId(R.id.tv_rating)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_rating)).check(matches(withText(dummyDetailTvShow.voteAverage.toString())))
+        onView(withId(R.id.tv_genre)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_genre)).check(matches(withText(dummyDetailTvShow.genres.joinToString())))
+        onView(withId(R.id.tv_release)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_release)).check(matches(withText(Convert.convertStringToDate(dummyDetailTvShow.firstAirDate))))
+        onView(withId(R.id.tvQuoteValue)).check(matches(isDisplayed()))
+        onView(withId(R.id.tvQuoteValue)).check(matches(withText(dummyDetailTvShow.tagline)))
     }
 
     @After
