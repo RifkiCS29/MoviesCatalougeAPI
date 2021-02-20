@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.rifki.jetpackpro.mymovies.BuildConfig
 import com.rifki.jetpackpro.mymovies.R
 import com.rifki.jetpackpro.mymovies.data.source.local.entity.DetailTvShowEntity
 import com.rifki.jetpackpro.mymovies.databinding.ActivityDetailTvShowBinding
@@ -67,13 +68,13 @@ class DetailTvShowActivity : AppCompatActivity() {
             tvQuoteValue.text = tvShow.tagline
 
             Picasso.get()
-                .load("https://image.tmdb.org/t/p/w185${tvShow.posterPath}")
+                .load("${BuildConfig.URL_IMAGE}w185${tvShow.posterPath}")
                 .placeholder(R.drawable.ic_loading)
                 .error(R.drawable.ic_error)
                 .into(imagePoster)
 
             Picasso.get()
-                .load("https://image.tmdb.org/t/p/w500${tvShow.backdropPath}")
+                .load("${BuildConfig.URL_IMAGE}w500${tvShow.backdropPath}")
                 .placeholder(R.drawable.ic_loading)
                 .error(R.drawable.ic_error)
                 .into(imageBackdrop)

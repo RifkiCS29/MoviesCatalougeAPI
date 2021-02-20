@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.rifki.jetpackpro.mymovies.BuildConfig
 import com.rifki.jetpackpro.mymovies.R
 import com.rifki.jetpackpro.mymovies.data.source.local.entity.DetailMovieEntity
 import com.rifki.jetpackpro.mymovies.databinding.ActivityDetailMovieBinding
@@ -68,13 +69,13 @@ class DetailMovieActivity : AppCompatActivity() {
             tvQuoteValue.text = movie.tagline
 
             Picasso.get()
-                    .load("https://image.tmdb.org/t/p/w185${movie.posterPath}")
+                    .load("${BuildConfig.URL_IMAGE}w185${movie.posterPath}")
                     .placeholder(R.drawable.ic_loading)
                     .error(R.drawable.ic_error)
                     .into(imagePoster)
 
             Picasso.get()
-                    .load("https://image.tmdb.org/t/p/w500${movie.backdropPath}")
+                    .load("${BuildConfig.URL_IMAGE}w500${movie.backdropPath}")
                     .placeholder(R.drawable.ic_loading)
                     .error(R.drawable.ic_error)
                     .into(imageBackdrop)

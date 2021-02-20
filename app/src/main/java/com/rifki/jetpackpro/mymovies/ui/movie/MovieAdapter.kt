@@ -4,6 +4,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.rifki.jetpackpro.mymovies.BuildConfig
 import com.rifki.jetpackpro.mymovies.R
 import com.rifki.jetpackpro.mymovies.data.source.local.entity.MovieEntity
 import com.rifki.jetpackpro.mymovies.databinding.ItemMovieTvShowBinding
@@ -39,7 +40,7 @@ class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
                 tvRating.text = movie.voteAverage.toString()
 
                 Picasso.get()
-                        .load("https://image.tmdb.org/t/p/w185${movie.posterPath}")
+                        .load("${BuildConfig.URL_IMAGE}w185${movie.posterPath}")
                         .placeholder(R.drawable.ic_loading)
                         .error(R.drawable.ic_error)
                         .into(imgPoster)
